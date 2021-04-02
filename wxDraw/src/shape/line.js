@@ -206,8 +206,8 @@ Line.prototype = {
     //线条就只有stroke了
     context.save();
     this._draw(context);
-    context.setStrokeStyle(this.Option.strokeStyle);
-    context.setLineWidth(this.Option.lineWidth);
+    context.strokeStyle = this.Option.strokeStyle;
+    context.lineWidth = this.Option.lineWidth;
     this.setCommonstyle(context, "line");
     context.stroke();
     context.restore();

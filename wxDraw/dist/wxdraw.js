@@ -576,7 +576,7 @@ var commonMethods = {
         gra.addColorStop(element[0], element[1]);
       }, this);
       // console.log('继续渐变',gra);
-      context.setFillStyle(gra);
+      context.fillStyle = gra;
     }
     if (this.UnOption.needGra && this.UnOption.needGra == "circle" && this.UnOption.gra && this.UnOption.gra.length > 0) {
       this.turnColorLock(true); //开启颜色锁
@@ -586,19 +586,19 @@ var commonMethods = {
         gra.addColorStop(element[0], element[1]);
       }, this);
       // console.log(gra);
-      context.setFillStyle(gra);
+      context.fillStyle = gra;
     }
 
     if (!this._colorLock || this.needGra && his.UnOption.needGra == "no") {
       // console.log("没有渐变");
-      context.setFillStyle(this.Option.fillStyle);
+      context.fillStyle = this.Option.fillStyle;
     }
     if (this.UnOption.lineJoin == "miter") {
       context.setMiterLimit(this.Option.miterLimit);
     }
-    context.setStrokeStyle(this.Option.strokeStyle);
-    context.setLineWidth(this.Option.lineWidth);
-    context.setGlobalAlpha(this.Option.opacity);
+    context.strokeStyle = this.Option.strokeStyle;
+    context.lineWidth = this.Option.lineWidth;
+    context.globalAlpha = this.Option.opacity;
     if (this.UnOption.needShadow && this.Option.shadow) {
       // console.log(objToArray(this.Option.Shadow));
       context.setShadow(this.Option.shadow.offsetX, this.Option.shadow.offsetY, this.Option.shadow.blur, this.Option.shadow.color);
@@ -644,7 +644,7 @@ var commonMethods = {
       context.setFontSize(this.Option.fontSize);
       context.setTextAlign(this.UnOption.align);
       context.setTextBaseline(this.UnOption.textBaseline);
-      context.setFillStyle(this.Option.fillStyle);
+      context.fillStyle = this.Option.fillStyle;
       if (this.UnOption.needShadow && this.Option.shadow) {
         // console.log(objToArray(this.Option.Shadow));
         context.setShadow(this.Option.shadow.offsetX, this.Option.shadow.offsetY, this.Option.shadow.blur, this.Option.shadow.color);
@@ -727,7 +727,7 @@ var commonMethods = {
   _drawHelperPoints: function _drawHelperPoints(context) {
     // 绘制辅助点
     context.save();
-    context.setFillStyle("#F34739");
+    context.fillStyle = "#F34739";
     context.beginPath();
     if (this._detectPoints) {
       this._detectPoints.forEach(function (item) {
@@ -1748,8 +1748,8 @@ Line.prototype = _extends({
     //线条就只有stroke了
     context.save();
     this._draw(context);
-    context.setStrokeStyle(this.Option.strokeStyle);
-    context.setLineWidth(this.Option.lineWidth);
+    context.strokeStyle = this.Option.strokeStyle;
+    context.lineWidth = this.Option.lineWidth;
     this.setCommonstyle(context, "line");
     context.stroke();
     context.restore();
@@ -4289,8 +4289,9 @@ WxDraw.prototype = {
         }, this);
 
         //  //console.log(loc);
+        this.canvas.clearRect(0, 0, this.canvas.canvas.width, this.canvas.canvas.height);
         this.draw();
-        this.canvas.draw();
+        // this.canvas.draw();
     },
     // upDetect: function () {
     //     this.store.store.forEach(function (item) {
@@ -4308,9 +4309,10 @@ WxDraw.prototype = {
         };
     },
     update: function update() {
-        // 用户手动更新 
+        // 用户手动更新
+        this.canvas.clearRect(0, 0, this.canvas.canvas.width, this.canvas.canvas.height);
         this.draw();
-        this.canvas.draw();
+        // this.canvas.draw();
     },
     AnimationCenter: function AnimationCenter() {},
     /**
@@ -4407,7 +4409,8 @@ WxDraw.prototype = {
     },
     reset: function reset() {
         this.canvas.clearRect(this.x, this.y, this.w, this.h);
-        this.canvas.draw();
+        // this.canvas.draw();
+        this.canvas.clearRect(0, 0, this.canvas.canvas.width, this.canvas.canvas.height);
         this.clear();
     }
 };

@@ -123,8 +123,9 @@ WxDraw.prototype = {
         }, this);
 
         //  //console.log(loc);
+        this.canvas.clearRect(0, 0, this.canvas.canvas.width, this.canvas.canvas.height);
         this.draw();
-        this.canvas.draw();
+        // this.canvas.draw();
     },
     // upDetect: function () {
     //     this.store.store.forEach(function (item) {
@@ -142,9 +143,10 @@ WxDraw.prototype = {
         }
     },
     update: function () {
-        // 用户手动更新 
+        // 用户手动更新
+        this.canvas.clearRect(0, 0, this.canvas.canvas.width, this.canvas.canvas.height);
         this.draw();
-        this.canvas.draw();
+        // this.canvas.draw();
     },
     AnimationCenter: function () {
 
@@ -249,7 +251,8 @@ WxDraw.prototype = {
     },
     reset: function() {
         this.canvas.clearRect(this.x, this.y, this.w, this.h);
-        this.canvas.draw();
+        // this.canvas.draw();
+        this.canvas.clearRect(0, 0, this.canvas.canvas.width, this.canvas.canvas.height);
         this.clear();
     }
 }
